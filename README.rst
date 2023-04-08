@@ -8,7 +8,6 @@ CHiMP (Crystal Hits in My Plate) is a deep learning system to help researchers w
 calculate a coordinate for dispensing compound using the Echo.
 
 
-
 Installation
 -----------------------------------------------------------------------
 ::
@@ -22,7 +21,8 @@ Model dataset
 -----------------------------------------------------------------------
 ::
 
-wget https://zenodo.org/record/7810708/files/2022-12-07_CHiMP_Mask_R_CNN_XChem_50eph_VMXi_finetune_DICT_NZ.pytorch?download=1
+    wget https://zenodo.org/record/7810708/files/2022-12-07_CHiMP_Mask_R_CNN_XChem_50eph_VMXi_finetune_DICT_NZ.pytorch?download=1
+
 
 Running
 -----------------------------------------------------------------------
@@ -56,7 +56,7 @@ Development questions
 - Is torchvision a necessary dependency for runtime?
 - How are the model files built?
 - Why are there so many mypy problems in coord_generator.py and detector_utils.py?
-- How significant is this: DeprecationWarning: Please use `gaussian_filter` from the `scipy.ndimage` namespace, the `scipy.ndimage.filters` namespace is deprecated.
+- How significant is this: DeprecationWarning: Please use gaussian_filter from the scipy.ndimage namespace, the scipy.ndimage.filters namespace is deprecated.
 - Do we need to keep anything in the zocalo directory?
 - Is there some example image where target_position is properly calculated?
 
