@@ -1,0 +1,29 @@
+name: xchem_conda
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - black
+  - imageio
+  - matplotlib
+  - pip
+  - pytest
+  - python=3.9
+  - scikit-image
+  - pytorch
+  - torchvision
+  - yaml
+  - pip:
+    - aiohttp
+    - aiosignal
+    - aiosqlite
+    - albumentations
+    - dls-echolocator
+    - dls-billy
+    - dls-logform
+    - dls-mainiac
+    - dls-siggy
+    - dls-sqlinky
+    - dls-thangs
+    - dls-valkyrie

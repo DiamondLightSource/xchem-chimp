@@ -1,0 +1,2 @@
+# Specify the location of the running EchoLocator service
+client: http://localhost:27621

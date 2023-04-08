@@ -1,0 +1,63 @@
+{
+    "1": [
+        "Recipe that launches post-processing for the VMXi Formulatrix imagers."
+    ],
+    "1": {
+        "service": "DLS cluster submission",
+        "queue": "cluster.submission",
+        "parameters": {
+            "cluster": "cluster",
+            "cluster_submission_parameters": "-N CHiMP-Class -pe smp 8",
+            "cluster_project": "tomography",
+            "cluster_queue": "medium",
+            "cluster_commands": [
+                "module load python/zocalo/stable",
+                "zocalo.wrap --test --stomp-host=ws303 --wrap generic_process --recipewrapper \"$RECIPEWRAP\""
+            ],
+            "recipewrapper": "/dls/tmp/test_vmxi/{list_filename}/CHiMP_classify/.recipewrap",
+            "workingdir": "/dls/tmp/test_vmxi/{list_filename}/CHiMP_classify/.launch"
+        },
+        "job_parameters": {
+            "wrapped_commands": [
+                "/dls_sw/apps/chimp/master/chimp/zocalo/scripts/run_CHiMP_classify_test.sh",
+                "/dls/tmp/test_vmxi/{list_filename}.txt"
+            ]
+        },
+        "wrapper": {
+            "task_information": "vmxi_CC_dummy"
+        },
+        "output": 2
+    },
+
+    "2": {
+        "service": "DLS cluster submission",
+        "queue": "cluster.submission",
+        "parameters": {
+            "cluster": "cluster",
+            "cluster_submission_parameters": "-N CHiMP-Detect -pe smp 8",
+            "cluster_project": "tomography",
+            "cluster_queue": "medium",
+            "cluster_commands": [
+                "module load python/zocalo/stable",
+                "zocalo.wrap --test --stomp-host=ws303 --wrap generic_process --recipewrapper \"$RECIPEWRAP\""
+            ],
+            "recipewrapper": "/dls/tmp/test_vmxi/{list_filename}/CHiMP_detect/.recipewrap",
+            "workingdir": "/dls/tmp/test_vmxi/{list_filename}/CHiMP_detect/.launch"
+        },
+        "job_parameters": {
+            "wrapped_commands": [
+                "/dls_sw/apps/chimp/master/chimp/zocalo/scripts/run_CHiMP_detect_test.sh",
+                "/dls/tmp/test_vmxi/{list_filename}.txt"
+            ]
+        },
+        "wrapper": {
+            "task_information": "vmxi_CD_dummy"
+        }
+    },
+    
+    "start": [
+        [
+            1, []
+        ]
+    ]
+}

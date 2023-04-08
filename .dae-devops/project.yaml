@@ -1,0 +1,21 @@
+# Primary information needed for devops.
+primary:
+    repository_name: xchem-chimp
+    package_name: xchem_chimp
+    one_line_description: "XChem CHIMP"
+    author:
+        name: Olly King
+        email: olly.king@diamond.ac.uk
+    project_urls:
+        GitLab: https://gitlab.diamond.ac.uk/data-analysis/imaging
+    project_scripts:
+        xchem-chimp: "xchem_chimp.__main__:main"
+    dependencies:
+        - type: pypi
+          list:
+              - imageio
+              - matplotlib
+              - scikit-image
+              - torch
+              - torchvision
+              - albumentations
