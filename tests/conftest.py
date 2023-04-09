@@ -2,7 +2,7 @@ import warnings
 from pathlib import Path
 
 import pytest
-import requests
+import requests  # type: ignore
 
 with warnings.catch_warnings():
     warnings.filterwarnings("ignore", category=DeprecationWarning)

@@ -19,3 +19,4 @@ primary:
               - torch
               - torchvision
               - albumentations
+              - requests
