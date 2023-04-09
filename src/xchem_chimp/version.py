@@ -1,12 +1,18 @@
 import logging
+import warnings
 
-import albumentations
 import imageio
 import skimage
 import torch
 import torchvision
 
 import xchem_chimp
+
+with warnings.catch_warnings():
+    # Disregard warnings like: DeprecationWarning: Please use `gaussian_filter` from the `scipy.ndimage` namespace, the `scipy.ndimage.filters` namespace is deprecated.
+    warnings.filterwarnings("ignore", category=DeprecationWarning)
+    import albumentations
+
 
 logger = logging.getLogger(__name__)
 
