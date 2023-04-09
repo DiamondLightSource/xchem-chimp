@@ -1,0 +1,493 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>xchem-chimp &#8212; xchem-chimp 1.0.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/design-tabs.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <link rel="shortcut icon" href="_static/dls-favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="User Guide" href="user/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/dls-logo.svg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/dls-logo.svg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+    <p class="title logo__title">xchem-chimp</p>
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="user/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://gitlab.diamond.ac.uk/data-analysis/imaging/xchem-chimp" title="GitLab" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-gitlab"></i></span>
+            <label class="sr-only">GitLab</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="user/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://gitlab.diamond.ac.uk/data-analysis/imaging/xchem-chimp" title="GitLab" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-gitlab"></i></span>
+            <label class="sr-only">GitLab</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="xchem-chimp">
+<h1>xchem-chimp<a class="headerlink" href="#xchem-chimp" title="Permalink to this heading">#</a></h1>
+<p>CHiMP (Crystal Hits in My Plate) is a deep learning system to help researchers work with micrographs of protein crystallisation experiments. XChem CHiMP consists of one component:</p>
+<p>1. <strong>CHiMP Detector</strong>. This uses an object detection network to find the position of any crystals and drops in the image and uses this information to
+calculate a coordinate for dispensing compound using the Echo.</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">chimpflow</span>
+
+<span class="n">chimpflow</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+</section>
+<section id="model-dataset">
+<h2>Model dataset<a class="headerlink" href="#model-dataset" title="Permalink to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>wget https://zenodo.org/record/7810708/files/2022-12-07_CHiMP_Mask_R_CNN_XChem_50eph_VMXi_finetune_DICT_NZ.pytorch?download=1
+</pre></div>
+</div>
+</section>
+<section id="running">
+<h2>Running<a class="headerlink" href="#running" title="Permalink to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="n">detector_output</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">detect_folder_chimp</span> \
+    <span class="o">--</span><span class="n">echo</span> <span class="o">--</span><span class="n">preview</span> \
+    <span class="o">--</span><span class="n">num_classes</span><span class="o">=</span><span class="mi">3</span> \
+    <span class="o">--</span><span class="n">MODEL_PATH</span><span class="o">=</span><span class="n">src</span><span class="o">/</span><span class="n">xchem_chimp</span><span class="o">/</span><span class="n">detector</span><span class="o">/</span><span class="n">model</span><span class="o">/</span><span class="mi">2022</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">07</span><span class="n">_CHiMP_Mask_R_CNN_XChem_50eph_VMXi_finetune_DICT_NZ</span><span class="o">.</span><span class="n">pytorch</span> \
+    <span class="o">--</span><span class="n">IMAGE_PATH</span><span class="o">=</span><span class="n">tests</span><span class="o">/</span><span class="n">SubwellImages</span><span class="o">/</span><span class="mi">97</span><span class="n">wo_2021</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">14</span><span class="n">_RI1000</span><span class="o">-</span><span class="mi">0276</span><span class="o">-</span><span class="mi">3</span><span class="n">drop</span>
+</pre></div>
+</div>
+<p>you can expect something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">20</span><span class="o">-</span><span class="n">Mar</span><span class="o">-</span><span class="mi">23</span> <span class="mi">08</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">21</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">Loading</span> <span class="n">libraries</span><span class="o">...</span>
+<span class="mi">20</span><span class="o">-</span><span class="n">Mar</span><span class="o">-</span><span class="mi">23</span> <span class="mi">08</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">21</span> <span class="o">-</span> <span class="n">DEBUG</span> <span class="o">-</span> <span class="n">Loading</span> <span class="n">model</span> <span class="kn">from</span> <span class="nn">src</span><span class="o">/</span><span class="n">xchem_chimp</span><span class="o">/</span><span class="n">detector</span><span class="o">/</span><span class="n">model</span><span class="o">/</span><span class="mi">2022</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">07</span><span class="n">_CHiMP_Mask_R_CNN_XChem_50eph_VMXi_finetune_DICT_NZ</span><span class="o">.</span><span class="n">pytorch</span>
+<span class="mi">20</span><span class="o">-</span><span class="n">Mar</span><span class="o">-</span><span class="mi">23</span> <span class="mi">08</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">21</span> <span class="o">-</span> <span class="n">INFO</span> <span class="o">-</span> <span class="n">Making</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">detector</span> <span class="n">output</span><span class="p">:</span> <span class="o">/</span><span class="mi">27</span><span class="o">/</span><span class="n">xchem</span><span class="o">-</span><span class="n">chimp</span><span class="o">/</span><span class="n">detector_output</span>
+<span class="mi">20</span><span class="o">-</span><span class="n">Mar</span><span class="o">-</span><span class="mi">23</span> <span class="mi">08</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">21</span> <span class="o">-</span> <span class="n">DEBUG</span> <span class="o">-</span> <span class="n">extracting</span> <span class="n">coordinates</span><span class="o">...</span>
+<span class="mi">20</span><span class="o">-</span><span class="n">Mar</span><span class="o">-</span><span class="mi">23</span> <span class="mi">08</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">25</span> <span class="o">-</span> <span class="n">DEBUG</span> <span class="o">-</span> <span class="n">create_detector_output_dict</span><span class="p">:</span> <span class="mi">97</span><span class="n">wo_01A_1</span><span class="o">.</span><span class="n">jpg</span> <span class="o">-</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">objects</span> <span class="n">found</span><span class="p">:</span> <span class="mi">33</span>
+<span class="mi">20</span><span class="o">-</span><span class="n">Mar</span><span class="o">-</span><span class="mi">23</span> <span class="mi">08</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">25</span> <span class="o">-</span> <span class="n">DEBUG</span> <span class="o">-</span> <span class="mi">1</span> <span class="n">drops</span><span class="p">,</span> <span class="mi">32</span> <span class="n">crystals</span> <span class="n">over</span> <span class="n">prob</span> <span class="n">threshold</span>
+<span class="mi">20</span><span class="o">-</span><span class="n">Mar</span><span class="o">-</span><span class="mi">23</span> <span class="mi">08</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">26</span> <span class="o">-</span> <span class="n">DEBUG</span> <span class="o">-</span> <span class="n">Extracting</span> <span class="n">Echo</span> <span class="n">coordinate</span> <span class="kn">from</span> <span class="nn">distance</span> <span class="n">transform</span><span class="o">.</span>
+<span class="mi">20</span><span class="o">-</span><span class="n">Mar</span><span class="o">-</span><span class="mi">23</span> <span class="mi">08</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">27</span> <span class="o">-</span> <span class="n">DEBUG</span> <span class="o">-</span> <span class="n">Calculating</span> <span class="n">well</span> <span class="n">centroids</span><span class="o">...</span>
+<span class="mi">20</span><span class="o">-</span><span class="n">Mar</span><span class="o">-</span><span class="mi">23</span> <span class="mi">08</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">27</span> <span class="o">-</span> <span class="n">DEBUG</span> <span class="o">-</span> <span class="n">Loading</span> <span class="n">background</span> <span class="n">images</span>
+<span class="mi">20</span><span class="o">-</span><span class="n">Mar</span><span class="o">-</span><span class="mi">23</span> <span class="mi">08</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">27</span> <span class="o">-</span> <span class="n">DEBUG</span> <span class="o">-</span> <span class="n">Well</span> <span class="n">centroid</span> <span class="n">found</span> <span class="n">at</span> <span class="p">(</span><span class="mi">504</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="development-questions">
+<h2>Development questions<a class="headerlink" href="#development-questions" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Is the folder src/xchem_chimp/detector/background_images needed in the distribution?</p></li>
+<li><p>Where best to put model_file for unit testing?</p></li>
+<li><p>Is torchvision a necessary dependency for runtime?</p></li>
+<li><p>How are the model files built?</p></li>
+<li><p>Why are there so many mypy problems in coord_generator.py and detector_utils.py?</p></li>
+<li><p>How significant is this: DeprecationWarning: Please use gaussian_filter from the scipy.ndimage namespace, the scipy.ndimage.filters namespace is deprecated.</p></li>
+<li><p>Do we need to keep anything in the zocalo directory?</p></li>
+<li><p>Is there some example image where target_position is properly calculated?</p></li>
+</ul>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">#</a></h2>
+<p>See <a class="reference external" href="https://www.cs.diamond.ac.uk/chimpflow">https://www.cs.diamond.ac.uk/chimpflow</a> for more detailed documentation.</p>
+<p>Building and viewing the documents locally:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>git clone git+https://gitlab.diamond.ac.uk/scisoft/bxflow/chimpflow.git
+cd chimpflow
+virtualenv /scratch/$USER/venv/chimpflow
+source /scratch/$USER/venv/chimpflow/bin/activate
+pip install -e .[dev]
+make -f .chimpflow/Makefile validate_docs
+browse to file:///scratch/$USER/venvs/chimpflow/build/html/index.html
+</pre></div>
+</div>
+<p>Topics for further documentation:</p>
+<ul class="simple">
+<li><p>TODO list of improvements</p></li>
+<li><p>change log</p></li>
+</ul>
+</section>
+<section id="source-repository">
+<h2>Source repository<a class="headerlink" href="#source-repository" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://gitlab.diamond.ac.uk/data-analysis/imaging/xchem-chimp">https://gitlab.diamond.ac.uk/data-analysis/imaging/xchem-chimp</a></p>
+</section>
+<section id="id1">
+<h2>Documentation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+<svg version="4.0.0.63c5cb3" width="4.0em" height="4.0em" class="sd-material-icon sd-material-icon-person" viewBox="0 0 24 24" aria-hidden="true"><path d="M0 0h24v24H0z" fill="none"></path><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg></div>
+<p class="sd-card-text">The User Guide contains documentation on how to install and use the software.</p>
+</div>
+<a class="sd-stretched-link reference internal" href="user/index.html"><span class="doc"></span></a></div>
+</div>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="right-next"
+       href="user/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">User Guide</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-dataset">Model dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running">Running</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-questions">Development questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#source-repository">Source repository</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Documentation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
