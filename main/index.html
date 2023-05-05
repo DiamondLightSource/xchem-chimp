@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>xchem-chimp &#8212; xchem-chimp 0.1.dev8+g7a2abf6 documentation</title>
+    <title>xchem-chimp &#8212; xchem-chimp 1.0.1.dev2+g647bf2f documentation</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
     <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -40,9 +40,6 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
@@ -50,7 +47,7 @@
     <script src="_static/design-tabs.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
-    <link rel="shortcut icon" href="_static/dls-favicon.ico"/>
+    <link rel="icon" href="_static/dls-favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="User Guide" href="user/index.html" />
@@ -324,11 +321,18 @@ calculate a coordinate for dispensing compound using the Echo.</p>
 </pre></div>
 </div>
 </section>
-<section id="model-dataset">
-<h2>Model dataset<a class="headerlink" href="#model-dataset" title="Permalink to this heading">#</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>wget https://zenodo.org/record/7810708/files/2022-12-07_CHiMP_Mask_R_CNN_XChem_50eph_VMXi_finetune_DICT_NZ.pytorch?download=1
+<section id="model-file-for-xchem-chimp">
+<h2>Model file for xchem-chimp<a class="headerlink" href="#model-file-for-xchem-chimp" title="Permalink to this heading">#</a></h2>
+<p>The model file is saved in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">gitlab</span><span class="o">.</span><span class="n">diamond</span><span class="o">.</span><span class="n">ac</span><span class="o">.</span><span class="n">uk</span><span class="o">/</span><span class="n">xchem</span><span class="o">/</span><span class="n">xchem</span><span class="o">-</span><span class="n">chimp</span><span class="o">-</span><span class="n">models</span>
 </pre></div>
 </div>
+<p>This file is too large for github.</p>
+<p>For GitHub pytest to find the file in its CI/CD Actions, this file has been uploaded to zenodo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">zenodo</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">record</span><span class="o">/</span><span class="mi">7810708</span><span class="o">/</span><span class="mi">2022</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">07</span><span class="n">_CHiMP_Mask_R_CNN_XChem_50eph_VMXi_finetune_DICT_NZ</span><span class="o">.</span><span class="n">pytorch</span>
+</pre></div>
+</div>
+<p>The tests/conftest.py fetches this file automatically.</p>
 </section>
 <section id="running">
 <h2>Running<a class="headerlink" href="#running" title="Permalink to this heading">#</a></h2>
@@ -449,7 +453,7 @@ browse to file:///scratch/$USER/venvs/chimpflow/build/html/index.html
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-dataset">Model dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-file-for-xchem-chimp">Model file for xchem-chimp</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running">Running</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-questions">Development questions</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
