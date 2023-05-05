@@ -133,14 +133,12 @@ class ChimpXtalCoordGenerator:
                 plt.close()
 
     def calculate_well_centres(self) -> None:
-        logging.debug("Calculating well centroids...")
-        # Load in background images
-        logging.debug("Loading background images")
+        # Load in background images.
+        # TODO: Make static background images for other plate types besides swiss3.
         bg_image_pths = sorted(list(BG_IMAGE_DIR.glob("*.png")))
         bg_image_arrays = [img_as_float(skio.imread(pth)) for pth in bg_image_pths]
         for output_dict in self.combined_coords_list:
             im_path = output_dict["image_path"]
-            logging.debug(f"{im_path}")
             im_array = self.read_and_resize_image(im_path)
             if "_1.jpg" in im_path:
                 bg_image = bg_image_arrays[0]
@@ -149,13 +147,24 @@ class ChimpXtalCoordGenerator:
             elif "_3.jpg" in im_path:
                 bg_image = bg_image_arrays[2]
             else:
-                logging.error("Could not parse filename.")
+                raise RuntimeError(
+                    f'image filename "{im_path}" does not end with _1, _2 or _3'
+                )
             corr = signal.correlate2d(im_array, bg_image, mode="same", boundary="fill")
             y, x = np.unravel_index(np.argmax(corr), corr.shape)
             y, x = np.rint(np.array([y, x]) * (1.0 / IM_SCALE_FACTOR)).astype(int)
-            logging.debug(f"Well centroid found at {y, x}")
+            # Apply a fixed fudge offset to compensate for some unknown systematic problem in the well centroid detection.
+            # TODO: Fix problem where well centroid calculation apparently is shifted from the true value.
+            # UPDATE crystal_well_autolocations SET well_centroid_x = well_centroid_x + 30, well_centroid_y = well_centroid_y - 10
+            fudge_x = 30
+            fudge_y = -10
+            x += fudge_x
+            y += fudge_y
+            logging.debug(
+                f"Well centroid found at {x, y} after applying fudge offset {fudge_x, fudge_y}"
+            )
             output_dict["well_centroid"] = [y, x]
-            # Calculate realspace offset and add to dictionary
+            # Calculate realspace offset and add to dictionary.
             if output_dict["echo_coordinate"]:
                 output_dict["real_space_offset"] = utils.calculate_realspace_offset(
                     output_dict["echo_coordinate"][0],
