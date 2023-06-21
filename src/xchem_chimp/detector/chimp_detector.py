@@ -4,6 +4,7 @@ import albumentations as A
 import torch
 import torchvision
 from albumentations.pytorch.transforms import ToTensorV2
+from dls_utilpack.profiler import dls_utilpack_global_profiler
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 from torchvision.models.detection.mask_rcnn import MaskRCNNPredictor
 
@@ -60,7 +61,10 @@ class ChimpDetector(ChimpBase):
 
     def predict_single_image(self, image):
         with torch.no_grad():
-            prediction = self.model([image])
+            with dls_utilpack_global_profiler().context(
+                "predict_single_image torch.no_grad"
+            ):
+                prediction = self.model([image])
         return prediction
 
     def generate_all_predictions(self):

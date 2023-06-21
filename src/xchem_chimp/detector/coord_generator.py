@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Union
 
 import numpy as np
+from dls_utilpack.profiler import dls_utilpack_global_profiler
 from matplotlib import pyplot as plt
 from numpy.random import default_rng
 from scipy import ndimage as ndimage
@@ -185,74 +186,82 @@ class ChimpXtalCoordGenerator:
             output_dict = utils.create_detector_output_dict(
                 prediction, im_shape_path_tuple, prob_threshold=self.prob_threshold
             )
-            if self.detector.num_classes == 3:  # Drop and crystal detector
-                mask_index = output_dict["mask_index"]
-                drop_indices = np.where(output_dict["labels"] == 1)[0]
-                xtal_indices = np.where(output_dict["labels"] == 2)[0]
-                drop_indices_thresh = np.intersect1d(mask_index, drop_indices)
-                xtal_indices_thresh = np.intersect1d(mask_index, xtal_indices)
-                num_drops = len(drop_indices_thresh)
-                num_xtals = len(xtal_indices_thresh)
-                logging.debug(
-                    f"{num_drops} drops, {num_xtals} crystals over prob threshold"
-                )
-                if self.extract_echo:
-                    if num_drops == 0:
-                        # Append the list and continue to next item
-                        logging.debug("No drop detected over probabilty threshold!")
-                        # drop_index = drop_indices[0] # Take drop coord under threshold - is this necessary?
-                        self.combined_coords_list.append(output_dict)
-                        continue
-                    else:
-                        output_dict["drop_detected"] = True
-                        drop_index = drop_indices_thresh[0]
-                    drop_mask = prediction[0]["masks"][drop_index, 0]  # tensor mask
-                    drop_mask = utils.threshold_mask(
-                        drop_mask, mask_threshold=self.mask_threshold
-                    )  # numpy mask
-            else:
-                xtal_indices_thresh = output_dict["mask_index"]
+            profiler = dls_utilpack_global_profiler()
+            with profiler.context("extract_coordinates (part 1)"):
+                if self.detector.num_classes == 3:  # Drop and crystal detector
+                    mask_index = output_dict["mask_index"]
+                    drop_indices = np.where(output_dict["labels"] == 1)[0]
+                    xtal_indices = np.where(output_dict["labels"] == 2)[0]
+                    drop_indices_thresh = np.intersect1d(mask_index, drop_indices)
+                    xtal_indices_thresh = np.intersect1d(mask_index, xtal_indices)
+                    num_drops = len(drop_indices_thresh)
+                    num_xtals = len(xtal_indices_thresh)
+                    logging.debug(
+                        f"{num_drops} drops, {num_xtals} crystals over prob threshold"
+                    )
+                    if self.extract_echo:
+                        if num_drops == 0:
+                            # Append the list and continue to next item
+                            logging.debug("No drop detected over probabilty threshold!")
+                            # drop_index = drop_indices[0] # Take drop coord under threshold - is this necessary?
+                            self.combined_coords_list.append(output_dict)
+                            continue
+                        else:
+                            output_dict["drop_detected"] = True
+                            drop_index = drop_indices_thresh[0]
+                        drop_mask = prediction[0]["masks"][drop_index, 0]  # tensor mask
+                        drop_mask = utils.threshold_mask(
+                            drop_mask, mask_threshold=self.mask_threshold
+                        )  # numpy mask
+                else:
+                    xtal_indices_thresh = output_dict["mask_index"]
+
             # If there is an empty drop, calculate centre of mass and continue
-            if len(xtal_indices_thresh) == 0:
-                logging.debug("No crystal detected over probability threshold!")
-                if drop_mask is not None:
-                    drop_com = ndimage.center_of_mass(drop_mask)
-                    drop_com = [list(drop_com)]
-                    new_im_shape = drop_mask.shape
+            with profiler.context("extract_coordinates (part 2)"):
+                if len(xtal_indices_thresh) == 0:
+                    logging.debug("No crystal detected over probability threshold!")
+                    if drop_mask is not None:
+                        drop_com = ndimage.center_of_mass(drop_mask)
+                        drop_com = [list(drop_com)]
+                        new_im_shape = drop_mask.shape
+                        scale_factors = utils.calculate_scale_factors(
+                            output_dict["original_image_shape"], new_im_shape
+                        )
+                        drop_com = utils.scale_indices(drop_com, scale_factors)
+                        output_dict["echo_coordinate"] = drop_com
+                        self.combined_coords_list.append(output_dict)
+                    continue
+            with profiler.context("extract_coordinates (part 3)"):
+                for i in xtal_indices_thresh:
+                    xtal_mask = prediction[0]["masks"][i, 0]  # tensor mask
+                    xtal_mask = utils.threshold_mask(
+                        xtal_mask, mask_threshold=self.mask_threshold
+                    )  # numpy mask
+                    if self.extract_echo:
+                        # Subtract Xtal mask from drop mask
+                        drop_mask = drop_mask - xtal_mask.clip(None, drop_mask)
+                    new_im_shape = xtal_mask.shape
                     scale_factors = utils.calculate_scale_factors(
                         output_dict["original_image_shape"], new_im_shape
                     )
-                    drop_com = utils.scale_indices(drop_com, scale_factors)
-                    output_dict["echo_coordinate"] = drop_com
-                    self.combined_coords_list.append(output_dict)
-                continue
-            for i in xtal_indices_thresh:
-                xtal_mask = prediction[0]["masks"][i, 0]  # tensor mask
-                xtal_mask = utils.threshold_mask(
-                    xtal_mask, mask_threshold=self.mask_threshold
-                )  # numpy mask
+                    obj_indices = np.where(
+                        xtal_mask == 1
+                    )  # All pixels in segmented object
+                    obj_indices = self.sparsify_indices(obj_indices, xtal_mask)
+                    # Scale coordinates to fit original image size
+                    obj_indices = utils.scale_indices(obj_indices, scale_factors)
+                    output_dict["xtal_coordinates"].append(obj_indices)
+            with profiler.context("extract_coordinates (part 4)"):
                 if self.extract_echo:
-                    # Subtract Xtal mask from drop mask
-                    drop_mask = drop_mask - xtal_mask.clip(None, drop_mask)
-                new_im_shape = xtal_mask.shape
-                scale_factors = utils.calculate_scale_factors(
-                    output_dict["original_image_shape"], new_im_shape
-                )
-                obj_indices = np.where(xtal_mask == 1)  # All pixels in segmented object
-                obj_indices = self.sparsify_indices(obj_indices, xtal_mask)
-                # Scale coordinates to fit original image size
-                obj_indices = utils.scale_indices(obj_indices, scale_factors)
-                output_dict["xtal_coordinates"].append(obj_indices)
-            if self.extract_echo:
-                logging.debug("Extracting Echo coordinate from distance transform.")
-                dist_trans = ndimage.distance_transform_edt(drop_mask)
-                echo_coord = list(
-                    np.unravel_index(np.argmax(dist_trans), dist_trans.shape)
-                )
-                echo_coord = [list(echo_coord)]
-                # Scale coordinate to fit original image size
-                echo_coord = utils.scale_indices(echo_coord, scale_factors)
-                output_dict["echo_coordinate"] = echo_coord
+                    logging.debug("Extracting Echo coordinate from distance transform.")
+                    dist_trans = ndimage.distance_transform_edt(drop_mask)
+                    echo_coord = list(
+                        np.unravel_index(np.argmax(dist_trans), dist_trans.shape)
+                    )
+                    echo_coord = [list(echo_coord)]
+                    # Scale coordinate to fit original image size
+                    echo_coord = utils.scale_indices(echo_coord, scale_factors)
+                    output_dict["echo_coordinate"] = echo_coord
             self.combined_coords_list.append(output_dict)
         return self.combined_coords_list
 
