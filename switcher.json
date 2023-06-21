@@ -10,5 +10,9 @@
   {
     "version": "1.0.0",
     "url": "https://DiamondLightSource.github.io/xchem-chimp/1.0.0/"
+  },
+  {
+    "version": "adds-profiling",
+    "url": "https://DiamondLightSource.github.io/xchem-chimp/adds-profiling/"
   }
 ]
